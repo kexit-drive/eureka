@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: eureka
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: ${EUREKAHOSTNAME:localhost}
+    metadataMap:
+      zone: sodix1
+    preferIpAddress: false
+    instance-id: "eureka"
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    healthcheck:
+      enabled: true
+    webclient:
+      enabled: true
+  server:
+    renewal-percent-threshold: 0.85
+    enable-self-preservation: true
+  dashboard:
+    path: /api/eureka
